@@ -13,8 +13,8 @@
 - you can run the program using intellij using the run command
 - on a seperate terminal run **ngrok http 8080**
 
+Now everything should work, look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md) for more details on setting up the server with webhooks
+
 ## CI feature #3 - notification
 
 The status notification is implemented by running a curl command requesting a status update on the commit in question. This requires a GitHub Personal Access Token, as well as the repo owner, repo name and full SHA of the commit. The status and description is dependent on whether the commit compiles and if all tests are passed.
-
-Now everything should work, look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md) for more details on setting up the server with webhooks
