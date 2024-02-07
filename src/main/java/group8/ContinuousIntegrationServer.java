@@ -37,13 +37,17 @@ public class ContinuousIntegrationServer extends AbstractHandler
         response.getWriter().println("CI job done");
     }
 
-    public void statusUpdate(String URL){
+    public boolean statusUpdate(String repo, String owner, String sha) throws InterruptedException{
+        
         String pat = "";
+        
         try {
             pat = Files.readString(Paths.get("githubPAT"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            
+            System.err.println("Can't read in PAT");
             e.printStackTrace();
+            return false;
         }
 
         JSONObject jObject = new JSONObject();
@@ -53,31 +57,43 @@ public class ContinuousIntegrationServer extends AbstractHandler
         jObject.put("description", "The build succeeded!");
         jObject.put("context", "continuous-integration/lab2");
 
+        String URL = "https://api.github.com/repos/" + owner + "/" + repo + "/statuses/" + sha;
+
         String[] command = {"curl", "-L", "-X", "POST", "-H", "Accept: application/vnd.github+json", "-H", "Authorization: Bearer " + pat, "-H", "X-GitHub-Api-Version: 2022-11-28",  URL, "-d", jObject.toString()};
 
+        Process process;
+
         try {
-            Process process = Runtime.getRuntime().exec(command);
+            process = Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            
+            System.err.println("Error when running curl");
+            e.printStackTrace();
+            return false;
+        }
+
+        try {
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
                 System.out.println(line);
             }
-            process.waitFor();
-            process.destroy();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
+            System.err.println("Error when reading response");
             e.printStackTrace();
         }
+
+        process.waitFor();
+        process.destroy();
+
+        return true;
     }
 
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception
     {
         ContinuousIntegrationServer test = new ContinuousIntegrationServer();
-        test.statusUpdate("https://api.github.com/repos/DD2480-group8-VT24/DD2480-Assignment-2-CI/statuses/599348833adb3b968dc537edda4e7db906b2ae18");
+        test.statusUpdate("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18");
 
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());
