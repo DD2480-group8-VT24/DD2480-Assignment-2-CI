@@ -37,7 +37,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
         response.getWriter().println("CI job done");
     }
 
-    public boolean statusUpdate(String repo, String owner, String sha) throws InterruptedException{
+    public boolean statusUpdate(String repo, String owner, String sha, boolean compiles, boolean passTests) throws InterruptedException{
         
         String pat = "";
         
@@ -52,9 +52,25 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
         JSONObject jObject = new JSONObject();
 
-        jObject.put("state", "success");
-        jObject.put("target_url", "https://example.com/build/status");
-        jObject.put("description", "The build succeeded!");
+        if (compiles) {
+            if (passTests) 
+            {
+                jObject.put("state", "success");
+                jObject.put("description", "The build succeeded!");
+            } 
+            else 
+            {
+                jObject.put("state", "failure");
+                jObject.put("description", "The build compiles, but does not pass all tests");
+            }
+        } 
+        else 
+        {
+            jObject.put("state", "failure");
+            jObject.put("description", "The build fails to compile");
+        }
+
+        jObject.put("target_url", JSONObject.NULL);
         jObject.put("context", "continuous-integration/lab2");
 
         String URL = "https://api.github.com/repos/" + owner + "/" + repo + "/statuses/" + sha;
@@ -93,7 +109,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
     public static void main(String[] args) throws Exception
     {
         ContinuousIntegrationServer test = new ContinuousIntegrationServer();
-        test.statusUpdate("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18");
+        test.statusUpdate("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18", true, true);
 
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());
