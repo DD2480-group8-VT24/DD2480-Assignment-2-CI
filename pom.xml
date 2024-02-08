@@ -47,6 +47,18 @@
       <artifactId>gson</artifactId>
       <version>2.10.1</version>
     </dependency>
-
   </dependencies>
+
+  <build>
+    <testResources>
+
+      <testResource>
+        <directory>src/test/java/resources</directory>
+      </testResource>
+
+    </testResources>
+
+  </build>
+
+
 </project>
