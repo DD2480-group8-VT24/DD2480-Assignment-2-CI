@@ -23,8 +23,7 @@ public class JsonRequest {
         }
     }
 
-
-    public String branchName() {
+    public String getBranchName() {
         String[] ref_split = ref.split("/");
 
         if (ref_split[1].equals("tags")) {
@@ -39,15 +38,16 @@ public class JsonRequest {
         return after;
     }
 
-    public String repoCloneUrl() {
+    public String getRepoCloneUrl() {
         return repository.clone_url;
     }
 
-    public String repoName() {
+
+    public String getRepoName() {
         return repository.name;
     }
 
-    public String ownerName() {
+    public String getOwnerName() {
         return repository.owner.name;
     }
 
