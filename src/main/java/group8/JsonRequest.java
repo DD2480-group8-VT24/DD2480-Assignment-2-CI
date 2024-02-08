@@ -51,14 +51,14 @@ public class JsonRequest {
         return repository.owner.name;
     }
 
-    public JsonRequest readJsonFromRequest(HttpServletRequest request) throws IOException {
+    public static JsonRequest readJsonFromRequest(HttpServletRequest request) throws IOException {
         String json = IOUtils.toString(request.getReader());
 
         Gson gson = new Gson();
         return gson.fromJson(json, JsonRequest.class);
     }
 
-    private JsonRequest readJsonFromString(String json) {
+    protected static JsonRequest readJsonFromString(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, JsonRequest.class);
     }
