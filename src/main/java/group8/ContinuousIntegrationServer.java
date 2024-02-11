@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
-import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.io.*;
 
 import org.eclipse.jetty.server.Server;
@@ -41,9 +41,17 @@ public class ContinuousIntegrationServer extends AbstractHandler
             pb.redirectOutput(resultsFile);
             // start the process
             Process process = pb.start();
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                return true;
+            boolean is_exited = process.waitFor(5, TimeUnit.MINUTES);
+            if (is_exited) {
+                int exitCode = process.exitValue();
+                if (exitCode == 0) {
+                    return true;
+                }
+            }
+            else {
+                process.destroy();
+                System.err.println("Test execution timed out");
+                return false;
             }
         }
         catch (IOException e) {
@@ -53,7 +61,6 @@ public class ContinuousIntegrationServer extends AbstractHandler
             e.printStackTrace();
         }
         return false;
-
     }
 
     // used to start the CI server in command line
