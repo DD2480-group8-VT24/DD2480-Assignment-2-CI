@@ -31,6 +31,25 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
         response.getWriter().println("CI job done");
     }
+    public boolean runUnitTests() {
+        ProcessBuilder pb = new ProcessBuilder("mvn", "test");
+        try {
+            // start the process
+            Process process = pb.start();
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                return true;
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        } 
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
 
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception
