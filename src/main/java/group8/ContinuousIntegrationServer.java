@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 import java.io.IOException;
+import java.io.*;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
@@ -33,9 +34,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
     }
     public boolean runUnitTests() {
         ProcessBuilder pb = new ProcessBuilder("mvn", "test");
+        File resultsFile = new File("test_results.txt");
+
         try {
             // start the process
             Process process = pb.start();
+            pb.redirectErrorStream(true);
+            pb.redirectOutput(resultsFile);
             int exitCode = process.waitFor();
             if (exitCode == 0) {
                 return true;
