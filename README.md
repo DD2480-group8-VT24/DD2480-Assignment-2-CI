@@ -15,6 +15,10 @@
 
 Now everything should work, look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md) for more details on setting up the server with webhooks
 
+## CI feature #2 - testing
+
+To test the program, the code calls maven with the ProcessBuilder class. With maven, it will run all unit tests and then report these results in a separate file marked "test_results.txt". The results in said file depend on the success and failure of said test cases.
+
 ## CI feature #3 - notification
 
 ### Implementation
@@ -30,3 +34,4 @@ The request consists of:
 The test suit for createStatusMessage consists of assuring that the content of the JSON message is correct for the combinations: both compilation and tests passes, compilation passes and tests fails and compilation fails.
 
 The test suit for statusNotification consists of a check that the GitHub PAT exists, as well as that a succesfull commit returns success, a failing commit returns failure and that an incorrect PATH (incorrect SHA) results in state not being found.
+
