@@ -37,10 +37,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
         File resultsFile = new File("test_results.txt");
 
         try {
-            // start the process
-            Process process = pb.start();
             pb.redirectErrorStream(true);
             pb.redirectOutput(resultsFile);
+            // start the process
+            Process process = pb.start();
             int exitCode = process.waitFor();
             if (exitCode == 0) {
                 return true;
