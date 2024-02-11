@@ -54,12 +54,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 return false;
             }
         }
-        catch (IOException e) {
+        catch (IOException | InterruptedException e) {
             e.printStackTrace();
         } 
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return false;
     }
 
