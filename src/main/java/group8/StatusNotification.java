@@ -7,9 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-import javax.print.DocFlavor.STRING;
-
-import org.eclipse.jetty.util.ajax.JSON;
 import org.json.JSONObject;
 
 /**
