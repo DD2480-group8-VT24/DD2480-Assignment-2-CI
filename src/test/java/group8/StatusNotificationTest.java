@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class StatusNotificationTest {
     
+    //---------------- Create Status Message -------------
     
     @Test
     public void createStatusMessageCorrectForPass() {
@@ -41,4 +42,8 @@ public class StatusNotificationTest {
         assertEquals(result.get("target_url"), JSONObject.NULL);
         assertEquals(result.getString("context"), "continuous-integration/lab2");
     }
+
+    //---------------- Status Notification -------------
+
+    
 }
