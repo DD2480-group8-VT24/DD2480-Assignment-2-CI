@@ -53,7 +53,7 @@ public class StatusNotification {
      * Sends a commit status update to the specified repo and commit sha with the specified message
      * @param repo
      * @param owner
-     * @param sha the full 41 character SHA
+     * @param sha the full 40 character SHA
      * @param message JSON object of form {"state": , "description": , "target_url": , "context":}
      * @return
      * @throws InterruptedException
