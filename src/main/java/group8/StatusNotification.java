@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
+
+import javax.print.DocFlavor.STRING;
 
 import org.eclipse.jetty.util.ajax.JSON;
 import org.json.JSONObject;
@@ -54,53 +57,35 @@ public class StatusNotification {
      * @param repo
      * @param owner
      * @param sha the full 41 character SHA
-     * @param compiles
-     * @param passTests
+     * @param message JSON object of form {"state": , "description": , "target_url": , "context":}
      * @return
      * @throws InterruptedException
+     * @throws IOException 
      */
-    public static boolean statusNotification(String repo, String owner, String sha, JSONObject message) throws InterruptedException{
+    public static String statusNotification(String repo, String owner, String sha, JSONObject message) throws InterruptedException, IOException{
         
         String pat = "";
-        
-        try {
-            pat = Files.readString(Paths.get("githubPAT"));
-        } catch (IOException e) {
-            
-            System.err.println("Can't read in PAT");
-            e.printStackTrace();
-            return false;
-        }
+        pat = Files.readString(Paths.get("githubPAT"));
 
         String URL = "https://api.github.com/repos/" + owner + "/" + repo + "/statuses/" + sha;
 
         String[] command = {"curl", "-L", "-X", "POST", "-H", "Accept: application/vnd.github+json", "-H", "Authorization: Bearer " + pat, "-H", "X-GitHub-Api-Version: 2022-11-28",  URL, "-d", message.toString()};
 
         Process process;
+        process = Runtime.getRuntime().exec(command);
 
-        try {
-            process = Runtime.getRuntime().exec(command);
-        } catch (IOException e) {
-            
-            System.err.println("Error when running curl");
-            e.printStackTrace();
-            return false;
-        }
 
-        try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            System.err.println("Error when reading response");
-            e.printStackTrace();
-        }
+        BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String responseString = in.lines().collect(Collectors.joining("\n"));
+        JSONObject response = new JSONObject(responseString);
 
         process.waitFor();
         process.destroy();
 
-        return true;
+        try {
+            return response.getString("state");
+        } catch (Exception e) {
+            return "Response state not found.\n Full response message:" + responseString;
+        }
     }
 }
