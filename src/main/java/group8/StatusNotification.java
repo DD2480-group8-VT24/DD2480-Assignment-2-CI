@@ -8,8 +8,21 @@ import java.nio.file.Paths;
 
 import org.json.JSONObject;
 
+/**
+ * Sends github commit status updates to specified repo
+ */
 public class StatusNotification {
 
+    /**
+     * Sends a commit status update to the specified repo and commit sha, based on whether the commit compiles and passes the test suit.
+     * @param repo
+     * @param owner
+     * @param sha the full 41 character SHA
+     * @param compiles
+     * @param passTests
+     * @return
+     * @throws InterruptedException
+     */
     public static boolean statusNotification(String repo, String owner, String sha, boolean compiles, boolean passTests) throws InterruptedException{
         
         String pat = "";
