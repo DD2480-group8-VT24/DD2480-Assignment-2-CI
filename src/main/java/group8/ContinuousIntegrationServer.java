@@ -35,7 +35,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception
     {
-        StatusNotification.statusNotification("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18", true, true);
+        StatusNotification.statusNotification("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18", StatusNotification.createStatusMessage(true, true));
 
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());

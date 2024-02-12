@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.eclipse.jetty.util.ajax.JSON;
 import org.json.JSONObject;
 
 /**
@@ -14,7 +15,42 @@ import org.json.JSONObject;
 public class StatusNotification {
 
     /**
-     * Sends a commit status update to the specified repo and commit sha, based on whether the commit compiles and passes the test suit.
+     * creates a status message json object based whether the commit compiles and passes 
+     * the test suit
+     * 
+     * @param compiles
+     * @param passTests
+     * @return
+     */
+    public static JSONObject createStatusMessage(boolean compiles, boolean passTests){
+        JSONObject message = new JSONObject();
+
+        if (compiles) {
+            if (passTests) 
+            {
+                message.put("state", "success");
+                message.put("description", "The build succeeded!");
+            } 
+            else 
+            {
+                message.put("state", "failure");
+                message.put("description", "The build compiles, but does not pass all tests");
+            }
+        } 
+        else 
+        {
+            message.put("state", "failure");
+            message.put("description", "The build fails to compile");
+        }
+
+        message.put("target_url", JSONObject.NULL);
+        message.put("context", "continuous-integration/lab2");
+
+        return message;
+    }
+
+    /**
+     * Sends a commit status update to the specified repo and commit sha with the specified message
      * @param repo
      * @param owner
      * @param sha the full 41 character SHA
@@ -23,7 +59,7 @@ public class StatusNotification {
      * @return
      * @throws InterruptedException
      */
-    public static boolean statusNotification(String repo, String owner, String sha, boolean compiles, boolean passTests) throws InterruptedException{
+    public static boolean statusNotification(String repo, String owner, String sha, JSONObject message) throws InterruptedException{
         
         String pat = "";
         
@@ -36,32 +72,9 @@ public class StatusNotification {
             return false;
         }
 
-        JSONObject jObject = new JSONObject();
-
-        if (compiles) {
-            if (passTests) 
-            {
-                jObject.put("state", "success");
-                jObject.put("description", "The build succeeded!");
-            } 
-            else 
-            {
-                jObject.put("state", "failure");
-                jObject.put("description", "The build compiles, but does not pass all tests");
-            }
-        } 
-        else 
-        {
-            jObject.put("state", "failure");
-            jObject.put("description", "The build fails to compile");
-        }
-
-        jObject.put("target_url", JSONObject.NULL);
-        jObject.put("context", "continuous-integration/lab2");
-
         String URL = "https://api.github.com/repos/" + owner + "/" + repo + "/statuses/" + sha;
 
-        String[] command = {"curl", "-L", "-X", "POST", "-H", "Accept: application/vnd.github+json", "-H", "Authorization: Bearer " + pat, "-H", "X-GitHub-Api-Version: 2022-11-28",  URL, "-d", jObject.toString()};
+        String[] command = {"curl", "-L", "-X", "POST", "-H", "Accept: application/vnd.github+json", "-H", "Authorization: Bearer " + pat, "-H", "X-GitHub-Api-Version: 2022-11-28",  URL, "-d", message.toString()};
 
         Process process;
 
