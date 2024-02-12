@@ -20,6 +20,7 @@ public class StatusNotification {
      * 
      * @param compiles
      * @param passTests
+     * @author Jonatan Tuvstedt
      * @return
      */
     public static JSONObject createStatusMessage(boolean compiles, boolean passTests){
@@ -55,6 +56,7 @@ public class StatusNotification {
      * @param owner
      * @param sha the full 40 character SHA
      * @param message JSON object of form {"state": , "description": , "target_url": , "context":}
+     * @author Jonatan Tuvstedt
      * @return
      * @throws InterruptedException
      * @throws IOException 
