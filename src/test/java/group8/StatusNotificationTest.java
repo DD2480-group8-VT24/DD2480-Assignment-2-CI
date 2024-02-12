@@ -1,7 +1,13 @@
 package group8;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.json.JSONObject;
 import org.junit.Test;
@@ -45,5 +51,47 @@ public class StatusNotificationTest {
 
     //---------------- Status Notification -------------
 
-    
+    @Test
+    public void githubPATExists(){
+        try {
+            String pat = "";
+            pat = Files.readString(Paths.get("githubPAT"));
+            assertFalse(pat.equals(""));
+        } catch (IOException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void statusNotificationCorrectForSuccessfulCommit(){
+        try {
+            String response = StatusNotification.statusNotification("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18", StatusNotification.createStatusMessage(true, true));
+            assertTrue(response.equals("success"));
+        } 
+        catch (InterruptedException | IOException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void statusNotificationCorrectForFailedCommit(){
+        try {
+            String response = StatusNotification.statusNotification("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "599348833adb3b968dc537edda4e7db906b2ae18", StatusNotification.createStatusMessage(true, false));
+            assertTrue(response.equals("failure"));
+        } 
+        catch (InterruptedException | IOException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void statusNotificationFailsForIncorrectLocation(){
+        try {
+            String response = StatusNotification.statusNotification("DD2480-Assignment-2-CI", "DD2480-group8-VT24", "NotARealSHA", StatusNotification.createStatusMessage(true, false));
+            assertTrue(response.substring(0,25).equals("Response state not found."));
+        } 
+        catch (InterruptedException | IOException e) {
+            fail();
+        }
+    }
 }
