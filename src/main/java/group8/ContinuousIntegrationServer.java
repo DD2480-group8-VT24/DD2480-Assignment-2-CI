@@ -58,8 +58,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
         System.out.println(result);
     }
 
-    public void checkout(String id){
+    public void checkoutCommit(Git git, String commitId) throws GitAPIException, IOException {
+        git.checkout().setName(commitId).call();
+        ObjectId id = git.getRepository().resolve(Constants.HEAD);
 
+        System.out.println(id.getName());
+
+        assert(id.getName().equals(commitId));
     }
 
     // used to start the CI server in command line
