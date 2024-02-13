@@ -1,7 +1,6 @@
 # DD2480-Assignment-2-CI
 This is a simple CI server for the [Assignment #2: Continuous Integration](https://canvas.kth.se/courses/45179/assignments/273878) which when receiving a webhook from github checks out the commit, runs mvn compile and mvn test and then sends a status notification to the GitHub commit in question.
 
-
 # Setting up the project
 - Make sure to have java openjdk 21 installed
 - Make sure you have [ngrok](https://ngrok.com/docs/getting-started/) installed 
@@ -15,6 +14,9 @@ This is a simple CI server for the [Assignment #2: Continuous Integration](https
 - on a seperate terminal run **ngrok http 8080**
 
 For more details on  setting up the server with webhooks look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md)
+
+## Documentation
+- To generate JavaDoc HTML files run `mvn javadoc:javadoc`. The documentation is found under `target/site/apidocs`
 
 ## CI feature #2 - testing
 
