@@ -7,11 +7,14 @@ import javax.servlet.ServletException;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.ObjectId;
 
 public class ContinuousIntegrationServer extends AbstractHandler
 {
@@ -37,17 +40,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
         response.getWriter().println("CI job done");
     }
 
-    public boolean cloneRepo(String repoName){
-        File tempDir = new File("./src/repo");
-        try{
-            Git git = Git.cloneRepository()
-                .setURI(repoName)
-                .setDirectory(tempDir)
-                .call();
-        }
-        catch(GitAPIException e){
-            System.err.println("Failed to clone repository");
-        }
+    public Git cloneRepo(File tempDir, String repoName) throws GitAPIException{
+        return Git.cloneRepository()
+            .setURI(repoName)
+            .setDirectory(tempDir)
+            .call();
+    }
+
 
         return false;
     }
