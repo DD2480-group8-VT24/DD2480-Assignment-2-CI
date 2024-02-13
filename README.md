@@ -1,19 +1,22 @@
 # DD2480-Assignment-2-CI
+This is a simple CI server for the [Assignment #2: Continuous Integration](https://canvas.kth.se/courses/45179/assignments/273878) which when receiving a webhook from github checks out the commit, runs mvn compile and mvn test and then sends a status notification to the GitHub commit in question.
 
+# Setting up the project
+- Make sure to have java openjdk 21 installed
+- Make sure you have [ngrok](https://ngrok.com/docs/getting-started/) installed 
+- Make sure you have the latest version of [maven](https://maven.apache.org/download.cgi) installed 
+- Create a GitHub fine-grain [Personal Access Token](https://github.com/settings/tokens?type=beta) for the [repo](https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-C) with only permission for "Read and Write access to commit statuses" and "Read access to metadata". Place the token in a file named "githubPAT" in the root folder of the project. This is required for authenticating the status updates.
 
-# how to run the server
-- make sure to have java openjdk 21 installed, since that is the java version used for the project
-- make sure you have installed ngrok and set it up on your machine, use following [link](https://ngrok.com/docs/getting-started/)
-- make sure you have installed latest version of maven, you can use the following [link](https://maven.apache.org/download.cgi)
-- make sure to create a GitHub fine-grain [Personal Access Token](https://github.com/settings/tokens?type=beta) for the [repo](https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-C) with only permission for "Read and Write access to commit statuses" and "Read access to metadata". Place the token in a file named githubPAT in the root folder of the project. This is required for status updates.
-- Strongly advise to use intellij idea as the your IDE since that makes everything easier.
-  
-- clone the repo and make sure you are inside the CI subfolder
-- now try to run **mvn compile** everything should work
-- you can run the program using intellij using the run command
+## Running the project
+- Clone the repo and make sure you are inside the CI subfolder
+- Run **mvn test** to confirm that everything is working
+- Run the program using intellij or VSCode or using the run command
 - on a seperate terminal run **ngrok http 8080**
 
-Now everything should work, look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md) for more details on setting up the server with webhooks
+For more details on  setting up the server with webhooks look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md)
+
+## Documentation
+- To generate JavaDoc HTML files run `mvn javadoc:javadoc`. The documentation is found under `target/site/apidocs`
 
 ## CI feature #2 - testing
 
@@ -39,3 +42,18 @@ The request consists of:
 The test suit for createStatusMessage consists of assuring that the content of the JSON message is correct for the combinations: both compilation and tests passes, compilation passes and tests fails and compilation fails.
 
 The test suit for statusNotification consists of a check that the GitHub PAT exists, as well as that a succesfull commit returns success, a failing commit returns failure and that an incorrect PATH (incorrect SHA) results in state not being found.
+
+# Team evaluation
+For seeding we achieve all of the relevant bullet points with the exception of governance and leadership structure. With regards to forming we fulfil basically all of them to some extent, with the exception of external collaborators. On the collaboration front we achieve some of the, specifically the communication and focus while the "working as one unit" and knowing each other well is more arguable. For performing we are adapting to and identifying problems while we might struggle a bit more with time commitments, not duplicating work and not backtracking. Finally adjourning does not seem relevant as we are not in that stage of the process.
+
+# Statement of contribution
+
+**Mert Demirsü** - 
+
+**Melissa Mazura** - 
+
+**Marcus Odin** - 
+
+**Atheer Salim** - 
+
+**Jonatan Tuvstedt** - 
