@@ -30,12 +30,25 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
         System.out.println(target);
 
+        File tempDir = new File("repo");
+        if (tempDir.exists()) {
+            FileUtils.deleteDirectory(tempDir);
+        }
+
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
         // 2nd compile the code
-        JsonRequest newRequest = JsonRequest.readJsonFromRequest(request);
-        cloneRepo(newRequest.getRepoName());
+        JsonRequest jsonRequest = JsonRequest.readJsonFromRequest(request);
+        try {
+            Git git = cloneRepo(tempDir, jsonRequest.getRepoCloneUrl());
+            checkoutBranch(git, jsonRequest.getBranchName());
+            checkoutCommit(git, jsonRequest.getCommitId());
+
+            //String workingDirectory = System.getProperty("user.dir");
+        }catch(GitAPIException e) {
+            System.err.println("error: " + e);
+        }
 
         response.getWriter().println("CI job done");
     }
