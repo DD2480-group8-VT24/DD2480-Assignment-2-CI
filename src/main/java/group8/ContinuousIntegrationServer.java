@@ -53,18 +53,18 @@ public class ContinuousIntegrationServer extends AbstractHandler
         response.getWriter().println("CI job done");
     }
 
-    public Git cloneRepo(File tempDir, String repoName) throws GitAPIException{
+    public static Git cloneRepo(File tempDir, String repoName) throws GitAPIException{
         return Git.cloneRepository()
             .setURI(repoName)
             .setDirectory(tempDir)
             .call();
     }
 
-    public void checkoutBranch(Git git, String branchName) throws GitAPIException, IOException{
+    public static void checkoutBranch(Git git, String branchName) throws GitAPIException, IOException{
         git.checkout().setName("origin/" + branchName).call();
     }
 
-    public void checkoutCommit(Git git, String commitId) throws GitAPIException, IOException {
+    public static void checkoutCommit(Git git, String commitId) throws GitAPIException, IOException {
         git.checkout().setName(commitId).call();
     }
 
