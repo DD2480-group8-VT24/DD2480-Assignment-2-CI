@@ -42,7 +42,7 @@ The test suit for createStatusMessage consists of assuring that the content of t
 The test suit for statusNotification consists of a check that the GitHub PAT exists, as well as that a succesfull commit returns success, a failing commit returns failure and that an incorrect PATH (incorrect SHA) results in state not being found.
 
 # Team evaluation
-
+For seeding we achieve all of the relevant bullet points with the exception of governance and leadership structure. With regards to forming we fulfil basically all of them to some extent, with the exception of external collaborators. On the collaboration front we achieve some of the, specifically the communication and focus while the "working as one unit" and knowing each other well is more arguable. For performing we are adapting to and identifying problems while we might struggle a bit more with time commitments, not duplicating work and not backtracking. Finally adjourning does not seem relevant as we are not in that stage of the process.
 
 # Statement of contribution
 
