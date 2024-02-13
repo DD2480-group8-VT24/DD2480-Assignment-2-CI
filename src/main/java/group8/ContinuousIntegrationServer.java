@@ -47,8 +47,15 @@ public class ContinuousIntegrationServer extends AbstractHandler
             .call();
     }
 
+    public void checkoutBranch(Git git, String branchName) throws GitAPIException, IOException{
+        git.checkout().setName("origin/" + branchName).call();
 
-        return false;
+        ProcessBuilder pb = new ProcessBuilder("cd", "repo", ";", "git", "rev-parse", "--abbrev-ref", "HEAD");
+        Process process = pb.start();
+
+        String result = new String(process.getInputStream().readAllBytes());
+
+        System.out.println(result);
     }
 
     public void checkout(String id){
