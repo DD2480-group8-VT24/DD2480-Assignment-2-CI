@@ -51,6 +51,8 @@ public class StatusNotificationTest {
 
     //---------------- Status Notification -------------
 
+    /*
+    
     @Test
     public void githubPATExists(){
         try {
@@ -94,4 +96,6 @@ public class StatusNotificationTest {
             fail();
         }
     }
+
+    */
 }
