@@ -3,6 +3,7 @@ package group8;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class runUnitTests {
             pb.redirectErrorStream(true);
             pb.redirectOutput(resultsFile);
             // start the process
+            pb.directory(new File("tempDir"));
             Process process = pb.start();
             boolean is_exited = process.waitFor(5, TimeUnit.MINUTES);
             if (is_exited) {
