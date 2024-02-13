@@ -15,6 +15,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
+import org.json.JSONObject;
 
 public class ContinuousIntegrationServer extends AbstractHandler
 {
@@ -49,9 +50,25 @@ public class ContinuousIntegrationServer extends AbstractHandler
         GitCommands.checkoutBranch(git, jsonRequest.getBranchName());
         GitCommands.checkoutCommit(git, jsonRequest.getCommitId());
 
+        boolean compiles = Compiler.compileProject(tempDir);
+        System.out.println("compiles: " + compiles);
+        boolean passTests = runUnitTests.runAllTests(tempDir);
+        System.out.println("passTests: " + passTests);
+
+        JSONObject result = StatusNotification.createStatusMessage(compiles, passTests);
+
+        try {
+            StatusNotification.statusNotification(jsonRequest.getRepoName(), jsonRequest.getOwnerName(), jsonRequest.getCommitId(), result);
+        }
+        catch (InterruptedException | IOException e) {
+            System.err.println("could not send commit status: " + e);
+            response.getWriter().println("couldn't send commit status");
+        }
+
         //String workingDirectory = System.getProperty("user.dir");
 
         response.getWriter().println("CI job done");
+        System.out.println("CI job done");
     }
 
 
