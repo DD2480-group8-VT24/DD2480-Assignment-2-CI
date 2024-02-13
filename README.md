@@ -52,7 +52,7 @@ For seeding we achieve all of the relevant bullet points with the exception of g
 
 **Melissa Mazura** - 
 
-**Marcus Odin** - 
+**Marcus Odin** - Worked on the server pulling the commit in question, both alone and as pair programming. Also reviewed pull requests.
 
 **Atheer Salim** - 
 
