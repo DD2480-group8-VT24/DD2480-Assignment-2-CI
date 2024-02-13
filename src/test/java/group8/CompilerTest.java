@@ -14,7 +14,7 @@ public class CompilerTest {
 
     @Test
     public void testCompileProjectSuccess() {
-        File tempDir = new File("maven_fail_to_compile");
+        File tempDir = new File("maven_succeed_to_compile");
 
         try {
             Git git = GitCommands.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
