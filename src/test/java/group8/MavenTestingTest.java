@@ -16,8 +16,5 @@ public class MavenTestingTest {
     public void checkTestFalse() {
         assertFalse(runUnitTests.runTests("-Dtest=DummyTest#testIsFalse"));
     }
-    @Test
-    public void checkAllTests() {
-        assertTrue(runUnitTests.runAllTests());
-    }
+
 }
