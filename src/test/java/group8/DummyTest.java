@@ -9,5 +9,12 @@ public class DummyTest {
     public void dummyTest() {
         assertTrue(true);
     }
+    @Test
+    public void testIsTrue() {
+        assertTrue(true);
+    }
+    public void testIsFalse() {
+        assertTrue(false);
+    }
 
 }
