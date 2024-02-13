@@ -14,4 +14,8 @@ public class testTesting {
     public void checkTestFalse() {
         assertFalse(runUnitTests.runTests("-Dtest=DummyTest#testIsFalse"));
     }
+    @Test
+    public void checkAllTests() {
+        assertFalse(runUnitTests.runTests(""));
+    }
 }
