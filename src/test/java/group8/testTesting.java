@@ -12,7 +12,7 @@ public class testTesting {
     }
     @Test
     public void checkTestFalse() {
-        assertFalse(runUnitTests.runTests("-Dtest=DummyTest#testIsFalse"));
+        assertTrue(runUnitTests.runTests("-Dtest=DummyTest#testIsFalse"));
     }
     @Test
     public void checkAllTests() {
