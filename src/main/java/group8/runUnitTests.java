@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class runUnitTests {
-    public static boolean runUnitTests() {
+    public static boolean runTests() {
         ProcessBuilder pb = new ProcessBuilder("mvn", "test");
         File resultsFile = new File("test_results.txt");
 
