@@ -56,4 +56,4 @@ For seeding we achieve all of the relevant bullet points with the exception of g
 
 **Atheer Salim** - 
 
-**Jonatan Tuvstedt** - 
+**Jonatan Tuvstedt** - I have primarily focused on issue #7, implementing the commit status notification to GitHub. This has gone very well and I am proud of this valuable contribution, as I had not worked with the GitHub REST API before, nor used http calls in any large extent. I also worked on finalising issue #4, cloning the repo.
