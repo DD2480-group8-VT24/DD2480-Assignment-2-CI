@@ -42,6 +42,13 @@ public class runUnitTests {
         } 
         return false;
     }
+    /**
+    * This function will go through the results of the tests and return whether all tests passed.
+    * @param: file of the tests
+    * @return: boolean if we find BUILD SUCCESS in said file to ensure the test passed
+    * @author: Melissa Mazura
+    */
+
     public static boolean findSuccessBuild(File resultsFile) {
         try {
             Scanner sc = new Scanner(resultsFile);
