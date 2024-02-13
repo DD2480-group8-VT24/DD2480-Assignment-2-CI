@@ -23,7 +23,7 @@ public class CloneRepoTest {
         if (tempDir.exists()) {
             FileUtils.deleteDirectory(tempDir);
         }
-        Git git = ContinuousIntegrationServer.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
+        Git git = GitCommands.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
     }
 
     @Test
@@ -32,9 +32,9 @@ public class CloneRepoTest {
         if (tempDir.exists()) {
             FileUtils.deleteDirectory(tempDir);
         }
-        Git git = ContinuousIntegrationServer.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
+        Git git = GitCommands.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
 
-        ContinuousIntegrationServer.checkoutBranch(git, "Testing");
+        GitCommands.checkoutBranch(git, "Testing");
 
         ProcessBuilder pb = new ProcessBuilder("ls");
         pb.directory(tempDir);
@@ -51,10 +51,10 @@ public class CloneRepoTest {
         if (tempDir.exists()) {
             FileUtils.deleteDirectory(tempDir);
         }
-        Git git = ContinuousIntegrationServer.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
+        Git git = GitCommands.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
 
-        ContinuousIntegrationServer.checkoutBranch(git, "Testing");
-        ContinuousIntegrationServer.checkoutCommit(git, "0b802b7ced98b6f963f7b468386e5af425f05255");
+        GitCommands.checkoutBranch(git, "Testing");
+        GitCommands.checkoutCommit(git, "0b802b7ced98b6f963f7b468386e5af425f05255");
 
         ObjectId id = git.getRepository().resolve(Constants.HEAD);
 
