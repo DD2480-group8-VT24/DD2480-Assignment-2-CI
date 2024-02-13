@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class testTesting {
+public class MaventestTesting {
 
     @Test
     public void checkTestTrue() {
