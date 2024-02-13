@@ -14,7 +14,8 @@ import java.util.Scanner;
 public class runUnitTests {
     /**
     * This function will return a boolean whether the test passes or not. It throws an excpetion when it cannot find the test name.
-    * @param: testcase name
+    * To run all test cases, leave the input string empty, as that will ensure all test cases will be run.
+    * @param: testcase name. If this field is an emptry string, the function will run all test cases.
     * @return: boolean if the test failed or succeeded
     * @author: Melissa Mazura
     */
