@@ -19,11 +19,16 @@ public class GitCommands {
      * @author Marcus Odin
      * @author Jonatan Tuvstedt
      */
-    public static Git cloneRepo(File tempDir, String repoName) throws GitAPIException {
-        return org.eclipse.jgit.api.Git.cloneRepository()
-                .setURI(repoName)
-                .setDirectory(tempDir)
-                .call();
+    public static Git cloneRepo(File tempDir, String repoName) {
+        try {
+            return org.eclipse.jgit.api.Git.cloneRepository()
+                    .setURI(repoName)
+                    .setDirectory(tempDir)
+                    .call();
+        } catch (GitAPIException e) {
+            System.err.println("error when cloning repo: " + e);
+        }
+        return null;
     }
 
     /**
@@ -36,8 +41,12 @@ public class GitCommands {
      * @author Marcus Odin
      * @author Jonatan Tuvstedt
      */
-    public static void checkoutBranch(org.eclipse.jgit.api.Git git, String branchName) throws GitAPIException{
-        git.checkout().setName("origin/" + branchName).call();
+    public static void checkoutBranch(org.eclipse.jgit.api.Git git, String branchName) {
+        try {
+            git.checkout().setName("origin/" + branchName).call();
+        } catch (GitAPIException e) {
+            System.err.println("error when checking out branch: " + e);
+        }
     }
 
     /**
@@ -50,8 +59,12 @@ public class GitCommands {
      * @author Marcus Odin
      * @author Jonatan Tuvstedt
      */
-    public static void checkoutCommit(org.eclipse.jgit.api.Git git, String commitId) throws GitAPIException, IOException {
-        git.checkout().setName(commitId).call();
+    public static void checkoutCommit(org.eclipse.jgit.api.Git git, String commitId) {
+        try {
+            git.checkout().setName(commitId).call();
+        } catch (GitAPIException e) {
+            System.err.println("error when checking out commit: " + e);
+        }
     }
 
 

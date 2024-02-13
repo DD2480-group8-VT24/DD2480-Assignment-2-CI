@@ -40,64 +40,21 @@ public class ContinuousIntegrationServer extends AbstractHandler
         // 1st clone your repository
         // 2nd compile the code
         JsonRequest jsonRequest = JsonRequest.readJsonFromRequest(request);
-        try {
-            Git git = cloneRepo(tempDir, jsonRequest.getRepoCloneUrl());
-            checkoutBranch(git, jsonRequest.getBranchName());
-            checkoutCommit(git, jsonRequest.getCommitId());
 
-            //String workingDirectory = System.getProperty("user.dir");
-        }catch(GitAPIException e) {
-            System.err.println("error: " + e);
+        Git git = GitCommands.cloneRepo(tempDir, jsonRequest.getRepoCloneUrl());
+        if (git == null) {
+            response.getWriter().println("Failed to clone repo");
         }
+
+        GitCommands.checkoutBranch(git, jsonRequest.getBranchName());
+        GitCommands.checkoutCommit(git, jsonRequest.getCommitId());
+
+        //String workingDirectory = System.getProperty("user.dir");
 
         response.getWriter().println("CI job done");
     }
 
-    /**
-     * Clones the requested repo into the folder specified in tempDir and returns a 
-     * git object referencing it
-     * 
-     * @param tempDir
-     * @param repoName
-     * @return
-     * @throws GitAPIException
-     * @author Marcus Odin
-     * @author Jonatan Tuvstedt
-     */
-    public static Git cloneRepo(File tempDir, String repoName) throws GitAPIException{
-        return Git.cloneRepository()
-            .setURI(repoName)
-            .setDirectory(tempDir)
-            .call();
-    }
 
-    /**
-     * Switches to the requested repo
-     * 
-     * @param git
-     * @param branchName
-     * @throws GitAPIException
-     * @throws IOException
-     * @author Marcus Odin
-     * @author Jonatan Tuvstedt
-     */
-    public static void checkoutBranch(Git git, String branchName) throws GitAPIException, IOException{
-        git.checkout().setName("origin/" + branchName).call();
-    }
-
-    /**
-     * Checks out the requested git commit
-     * 
-     * @param git
-     * @param commitId
-     * @throws GitAPIException
-     * @throws IOException
-     * @author Marcus Odin
-     * @author Jonatan Tuvstedt
-     */
-    public static void checkoutCommit(Git git, String commitId) throws GitAPIException, IOException {
-        git.checkout().setName(commitId).call();
-    }
 
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception
