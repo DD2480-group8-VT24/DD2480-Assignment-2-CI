@@ -3,6 +3,7 @@ package group8;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.util.IO;
 import org.junit.Test;
 
 import java.io.File;
@@ -13,8 +14,11 @@ import static org.junit.Assert.*;
 public class CompilerTest {
 
     @Test
-    public void testCompileProjectSuccess() {
+    public void testCompileProjectSuccess() throws IOException{
         File tempDir = new File("maven_succeed_to_compile");
+        if (tempDir.exists()) {
+            FileUtils.deleteDirectory(tempDir);
+        }
 
         try {
             Git git = GitCommands.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
@@ -30,9 +34,12 @@ public class CompilerTest {
     }
 
     @Test
-    public void testCompileProjectFailure() {
-
+    public void testCompileProjectFailure() throws IOException {
         File tempDir = new File("maven_fail_to_compile");
+        if (tempDir.exists()) {
+            FileUtils.deleteDirectory(tempDir);
+        }
+
         try {
             Git git = GitCommands.cloneRepo(tempDir, "https://github.com/DD2480-group8-VT24/DD2480-Assignment-2-CI.git");
             GitCommands.checkoutBranch(git, "maven_fail_to_compile_intentionally");
