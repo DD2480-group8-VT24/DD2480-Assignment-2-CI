@@ -62,22 +62,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
     public void checkoutBranch(Git git, String branchName) throws GitAPIException, IOException{
         git.checkout().setName("origin/" + branchName).call();
-
-        ProcessBuilder pb = new ProcessBuilder("cd", "repo", ";", "git", "rev-parse", "--abbrev-ref", "HEAD");
-        Process process = pb.start();
-
-        String result = new String(process.getInputStream().readAllBytes());
-
-        System.out.println(result);
     }
 
     public void checkoutCommit(Git git, String commitId) throws GitAPIException, IOException {
         git.checkout().setName(commitId).call();
-        ObjectId id = git.getRepository().resolve(Constants.HEAD);
-
-        System.out.println(id.getName());
-
-        assert(id.getName().equals(commitId));
     }
 
     // used to start the CI server in command line
