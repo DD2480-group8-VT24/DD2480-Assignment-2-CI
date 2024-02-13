@@ -13,8 +13,5 @@ public class DummyTest {
     public void testIsTrue() {
         assertTrue(true);
     }
-    public void testIsFalse() {
-        assertTrue(false);
-    }
 
 }
