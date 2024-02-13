@@ -15,6 +15,15 @@
 
 Now everything should work, look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md) for more details on setting up the server with webhooks
 
+## CI feature #2 - testing
+
+### Implementation
+
+To test the program, the code calls maven with the ProcessBuilder class. The function then takes as an input parameter the specific test case, a specific test class or - if the input is empty - all tests. After these tests are run, another function will check a file where the ersults are stored to check whether the tests passed by checking for BULILD SUCCESS in this file.  The code then returns the boolean evaluation of said test, or will throw an exception if the test fails. 
+
+### Testing
+The testing process of this function is done with the aide of dummy tests. These dummy tests have one true assertion and one false assertion. We then run specific test cases for these dummy tests to see if the function also returns the correct assertions.
+
 ## CI feature #3 - notification
 
 ### Implementation
