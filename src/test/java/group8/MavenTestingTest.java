@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 /*
  * This class will run the unit tests for the Testing part with maven of the code. 
  */
-public class MaventestTesting {
+public class MavenTestingTest {
 
     @Test
     public void checkTestTrue() {
