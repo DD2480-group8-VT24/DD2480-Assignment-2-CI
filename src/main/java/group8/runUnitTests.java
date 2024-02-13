@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class runUnitTests {
     /**
     * This function will return a boolean whether the test passes or not. It throws an excpetion when it cannot find the test name.
-    * To run all test cases, leave the input string empty, as that will ensure all test cases will be run.
     * @param: testcase name. If this field is an emptry string, the function will run all test cases.
     * @return: boolean if the test failed or succeeded
     * @author: Melissa Mazura
@@ -41,6 +40,37 @@ public class runUnitTests {
         catch (IOException | InterruptedException e) {
             e.printStackTrace();
         } 
+        return false;
+    }
+
+    /**
+    * This function will return a boolean whether the test passes or not. It throws an excpetion when it cannot find the test name.
+    * This will run all test cases.
+    * @return: boolean if the test failed or succeeded
+    * @author: Melissa Mazura
+    */
+
+    public static boolean runAllTests() {
+        ProcessBuilder pb = new ProcessBuilder("mvn", "test");
+        File resultsFile = new File("test_results.txt");
+        try {
+            pb.redirectErrorStream(true);
+            pb.redirectOutput(resultsFile);
+            // start the process
+            Process process = pb.start();
+            boolean is_exited = process.waitFor(5, TimeUnit.MINUTES);
+            if (is_exited) {
+                return findSuccessBuild(resultsFile);
+            }
+            else {
+                process.destroy();
+                System.err.println("Test execution timed out");
+                return false;
+            }
+        }
+        catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
         return false;
     }
     /**
