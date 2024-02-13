@@ -32,12 +32,12 @@ public class runUnitTests {
                 if (exitCode == 0) {
                     return true;
                 }
-                else {
-                    process.destroy();
-                    System.err.println("Test execution timed out");
-                    return false;
             }
-        }
+            else {
+                process.destroy();
+                System.err.println("Test execution timed out");
+                return false;
+            }
         }
         catch (IOException | InterruptedException e) {
             e.printStackTrace();
