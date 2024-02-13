@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+
 public class runUnitTests {
     public static boolean runTests(String testCase) {
         ProcessBuilder pb = new ProcessBuilder("mvn", testCase, "test");
@@ -20,12 +21,12 @@ public class runUnitTests {
                 if (exitCode == 0) {
                     return true;
                 }
+                else {
+                    process.destroy();
+                    System.err.println("Test execution timed out");
+                    return false;
             }
-            else {
-                process.destroy();
-                System.err.println("Test execution timed out");
-                return false;
-            }
+        }
         }
         catch (IOException | InterruptedException e) {
             e.printStackTrace();
