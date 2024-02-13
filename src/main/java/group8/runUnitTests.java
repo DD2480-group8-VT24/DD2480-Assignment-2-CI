@@ -50,11 +50,8 @@ public class runUnitTests {
                 if (line.indexOf("BUILD SUCCESS") != -1) {
                     return true;
                 }
-                else {
-                    return false;
-                }
-        }
-        sc.close();
+            }
+            sc.close();
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
