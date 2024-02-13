@@ -40,6 +40,9 @@ The test suit for createStatusMessage consists of assuring that the content of t
 
 The test suit for statusNotification consists of a check that the GitHub PAT exists, as well as that a succesfull commit returns success, a failing commit returns failure and that an incorrect PATH (incorrect SHA) results in state not being found.
 
+# Team evaluation
+
+
 # Statement of contribution
 
 **Mert Demirsü** - 
