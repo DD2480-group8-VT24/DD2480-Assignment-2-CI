@@ -22,7 +22,7 @@ For more details on  setting up the server with webhooks look [here](https://git
 
 ### Implementation
 
-To compile the code, the code uses the `Compiler` Class. This class runs Maven with the aide of `ProcessBuilder`. To make sure it runs correctly, the program also takes as an input of the file path to ensure that the correct branch is to be used in the process. It then simply runs mvn compile to compile the code within this branch. While the programm compiles, the code saves the results of the compilation in `compile_results.txt`, which we are then assessing to find BUILD SUCCESS for a successful compilation.
+To compile the code, the code uses the `Compiler` Class. This class runs Maven with the aide of `ProcessBuilder`. To make sure it runs correctly, the program also takes as an input of the file path to ensure that the correct branch is to be used in the process. It then simply runs `mvn compile` to compile the code within this branch. While the programm compiles, the code saves the results of the compilation in `compile_results.txt`, which we are then assessing to find BUILD SUCCESS for a successful compilation.
 
 ### Testing
 
