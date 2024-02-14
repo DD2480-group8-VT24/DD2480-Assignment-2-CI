@@ -6,6 +6,9 @@ import org.eclipse.jgit.api.Git;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * GitCommand contains the static functions cloneRepo, checkoutBranch and checkoutCommit
+ */
 public class GitCommands {
 
     /**
