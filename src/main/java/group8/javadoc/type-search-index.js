@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"group8","l":"Compiler"},{"p":"group8","l":"ContinuousIntegrationServer"},{"p":"group8","l":"GitCommands"},{"p":"group8","l":"JsonRequest"},{"p":"group8","l":"runUnitTests"},{"p":"group8","l":"StatusNotification"}];updateSearchResults();
