@@ -1,4 +1,4 @@
-# DD2480-Assignment-2-CI
+# DD2480-Assignment-2-CI ho
 This is a simple CI server for the [Assignment #2: Continuous Integration](https://canvas.kth.se/courses/45179/assignments/273878) which when receiving a webhook from github checks out the commit, runs mvn compile and mvn test and then sends a status notification to the GitHub commit in question.
 
 # Setting up the project
