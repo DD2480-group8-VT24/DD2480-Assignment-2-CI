@@ -18,10 +18,10 @@ public class StatusNotification {
      * creates a status message json object based whether the commit compiles and passes 
      * the test suit
      * 
-     * @param compiles
-     * @param passTests
+     * @param compiles represent if the compilation succeed or not
+     * @param passTests represent if the test cases runs successfully or not
      * @author Jonatan Tuvstedt
-     * @return
+     * @return the json object of the created status message
      */
     public static JSONObject createStatusMessage(boolean compiles, boolean passTests){
         JSONObject message = new JSONObject();
@@ -52,14 +52,14 @@ public class StatusNotification {
 
     /**
      * Sends a commit status update to the specified repo and commit sha with the specified message
-     * @param repo
-     * @param owner
+     * @param repo name of the repo
+     * @param owner name of the owner
      * @param sha the full 40 character SHA
      * @param message JSON object of form {"state": , "description": , "target_url": , "context":}
      * @author Jonatan Tuvstedt
-     * @return
-     * @throws InterruptedException
-     * @throws IOException 
+     * @return string of the status if found
+     * @throws InterruptedException if the current thread is interrupted
+     * @throws IOException if the curl command could not be executed
      */
     public static String statusNotification(String repo, String owner, String sha, JSONObject message) throws InterruptedException, IOException{
         

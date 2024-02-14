@@ -4,21 +4,21 @@ import java.io.IOException;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-/*
+/**
  * This class compiles the code using maven. This result will then be stored in the 
- * compile_results.txt file. After saving the result, it will look throught the file 
+ * compile_results.txt file. After saving the result, it will look through the file
  * to find BUILD SUCCESS to ensure that the project actually compiles. 
- * @author: Mert Demirsü
+ * @author Mert Demirsü
  */
 public class Compiler {
 
-    /*
+    /**
      * The function CompileProject will return a boolean whether the code compiles. For this to work, it will call maven with
      * the Process Builder, run compile and save the results to compile_results.txt. It then calls the findSuccessBuild function
      * from runUnitTests.java to find the String BUILD SUCCESS to indicate a successful build.
-     * @param: a temporary directory where the code will run
-     * @return: a boolean indicating whether the project successfully compiles
-     * @author: Mert Demirsü
+     * @param tempDir directory where the code will run
+     * @return a boolean indicating whether the project successfully compiles
+     * @author Mert Demirsü
      */
     public static boolean compileProject(File tempDir) {
         ProcessBuilder processBuilder = new ProcessBuilder("mvn", "compile");
