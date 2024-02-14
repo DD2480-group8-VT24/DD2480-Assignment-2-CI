@@ -58,7 +58,13 @@ public class StatusNotificationTest {
             pat = Files.readString(Paths.get("githubPAT"));
             assertFalse(pat.equals(""));
         } catch (IOException e) {
-            fail();
+            try {
+                String pat = "";
+                pat = Files.readString(Paths.get("../githubPAT"));
+                assertFalse(pat.equals(""));
+            } catch (Exception d) {
+                fail();
+            }
         }
     }
 

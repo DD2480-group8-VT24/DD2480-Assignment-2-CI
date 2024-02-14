@@ -64,7 +64,11 @@ public class StatusNotification {
     public static String statusNotification(String repo, String owner, String sha, JSONObject message) throws InterruptedException, IOException{
         
         String pat = "";
-        pat = Files.readString(Paths.get("githubPAT"));
+        try {
+            pat = Files.readString(Paths.get("githubPAT"));
+        } catch (Exception e) {
+            pat = Files.readString(Paths.get("../githubPAT"));
+        }
 
         String URL = "https://api.github.com/repos/" + owner + "/" + repo + "/statuses/" + sha;
 
