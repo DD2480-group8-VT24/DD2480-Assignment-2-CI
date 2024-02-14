@@ -13,7 +13,7 @@ import org.eclipse.jgit.api.Git;
 import org.json.JSONObject;
 
 /**
- *  Responsible for handeling the CI request from github, by compiling and testing the target repo
+ *  Responsible for handling the CI request from GitHub, by compiling and testing the target repo
  */
 public class ContinuousIntegrationServer extends AbstractHandler {
 

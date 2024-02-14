@@ -4,8 +4,6 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.Git;
 
 import java.io.File;
-import java.io.IOException;
-
 /**
  * GitCommand contains the static functions cloneRepo, checkoutBranch and checkoutCommit
  */
@@ -15,10 +13,9 @@ public class GitCommands {
      * Clones the requested repo into the folder specified in tempDir and returns a
      * git object referencing it
      *
-     * @param tempDir
-     * @param repoName
-     * @return
-     * @throws GitAPIException
+     * @param tempDir the temporary directory
+     * @param repoName the name of repo
+     * @return the Git Object
      * @author Marcus Odin
      * @author Jonatan Tuvstedt
      */
@@ -37,10 +34,8 @@ public class GitCommands {
     /**
      * Switches to the requested repo
      *
-     * @param git
-     * @param branchName
-     * @throws GitAPIException
-     * @throws IOException
+     * @param git the Git object
+     * @param branchName the branch name
      * @author Marcus Odin
      * @author Jonatan Tuvstedt
      */
@@ -55,10 +50,8 @@ public class GitCommands {
     /**
      * Checks out the requested git commit
      *
-     * @param git
-     * @param commitId
-     * @throws GitAPIException
-     * @throws IOException
+     * @param git the Git Object
+     * @param commitId the commit hash id
      * @author Marcus Odin
      * @author Jonatan Tuvstedt
      */
