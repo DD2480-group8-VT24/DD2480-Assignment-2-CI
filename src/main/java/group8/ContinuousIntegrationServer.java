@@ -12,8 +12,19 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.jgit.api.Git;
 import org.json.JSONObject;
 
-public class ContinuousIntegrationServer extends AbstractHandler
-{
+/**
+ *  Responsible for handeling the CI request from github, by compiling and testing the target repo
+ */
+public class ContinuousIntegrationServer extends AbstractHandler {
+
+    /**
+     * Parses the json request of GitHub webhook, clones the repo to temporary directory. runs compilation and testing
+     * on the target repo. Then sends the results using a commit status
+     * @param target the uri
+     * @param baseRequest base request
+     * @param request the HTTP request
+     * @param response the HTTP response
+     */
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
