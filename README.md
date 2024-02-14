@@ -48,7 +48,7 @@ For seeding we achieve all of the relevant bullet points with the exception of g
 
 # Statement of contribution
 
-**Mert Demirsü** - 
+**Mert Demirsü** - Worked on implementing server communication in regards to compile & Parse and JUnit Tests. Mixed work occured with both alone and pair programming in Group.
 
 **Melissa Mazura** - My contributions consisted of sucessfully completing the CI feature Testing. I have created a class that will run tests, save the results to a separate file and then check whether all tests succeeded. I had problems getting Maven to run, but in the end I believe that my contribution to the project has been positive.
 

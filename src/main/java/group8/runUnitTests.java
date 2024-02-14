@@ -49,8 +49,9 @@ public class runUnitTests {
     * @return: boolean if the test failed or succeeded
     * @author: Melissa Mazura
     */
-    public static boolean runAllTests() {
+    public static boolean runAllTests(File tempDir) {
         ProcessBuilder pb = new ProcessBuilder("mvn", "test");
+        pb.directory(tempDir);
         File resultsFile = new File("test_results.txt");
         try {
             pb.redirectErrorStream(true);
