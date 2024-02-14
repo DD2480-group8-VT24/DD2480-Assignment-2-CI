@@ -48,7 +48,7 @@ For seeding we achieve all of the relevant bullet points with the exception of g
 
 # Statement of contribution
 
-**Mert Demirsü** - 
+**Mert Demirsü** - Worked on implementing server communication in regards to compile & Parse and JUnit Tests. Mixed work occured with both alone and pair programming in Group.
 
 **Melissa Mazura** - 
 
