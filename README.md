@@ -52,7 +52,7 @@ For seeding we achieve all of the relevant bullet points with the exception of g
 
 **Melissa Mazura** - My contributions consisted of sucessfully completing the CI feature Testing. I have created a class that will run tests, save the results to a separate file and then check whether all tests succeeded. I had problems getting Maven to run, but in the end I believe that my contribution to the project has been positive.
 
-**Marcus Odin** - 
+**Marcus Odin** - I worked on getting the server to pull the commit in question, both alone and as pair programming. While doing this I also experienced the difficulities of integration since it was one of the later festures made that was also communicating with other parts of the code. Also reviewed pull requests.
 
 **Atheer Salim** - 
 
