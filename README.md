@@ -54,6 +54,6 @@ For seeding we achieve all of the relevant bullet points with the exception of g
 
 **Marcus Odin** - I worked on getting the server to pull the commit in question, both alone and as pair programming. While doing this I also experienced the difficulities of integration since it was one of the later festures made that was also communicating with other parts of the code. Also reviewed pull requests.
 
-**Atheer Salim** - 
+**Atheer Salim** - I worked on setting up the basic code skeleton for the project with maven. I worked on parsing the json request that comes from the webhook request by github. I also integrated everyone else code together. I think I have contributed greatly to the project and I have understood in practice how a CI server works.
 
 **Jonatan Tuvstedt** - I have primarily focused on issue #7, implementing the commit status notification to GitHub. This has gone very well and I am proud of this valuable contribution, as I had not worked with the GitHub REST API before, nor used http calls in any large extent. I also worked on finalising issue #4, cloning the repo.
