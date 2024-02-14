@@ -7,6 +7,6 @@ public class DummyTest {
 
     @Test
     public void dummyTest() {
-        assertTrue(true);
+        assertFalse(true);
     }
 }
