@@ -36,10 +36,6 @@ public class ContinuousIntegrationServer extends AbstractHandler
             FileUtils.deleteDirectory(tempDir);
         }
 
-        // here you do all the continuous integration tasks
-        // for example
-        // 1st clone your repository
-        // 2nd compile the code
         JsonRequest jsonRequest = JsonRequest.readJsonFromRequest(request);
 
         Git git = GitCommands.cloneRepo(tempDir, jsonRequest.getRepoCloneUrl());
@@ -65,15 +61,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
             response.getWriter().println("couldn't send commit status");
         }
 
-        //String workingDirectory = System.getProperty("user.dir");
-
         response.getWriter().println("CI job done");
         System.out.println("CI job done");
     }
 
-
-
-    // used to start the CI server in command line
     public static void main(String[] args) throws Exception
     {
         Server server = new Server(8080);
