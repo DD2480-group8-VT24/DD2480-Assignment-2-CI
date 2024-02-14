@@ -28,7 +28,7 @@ public class CompilerTest {
             assertTrue("Expected compilation to succeed for a project that compiles successfully", result);
 
             FileUtils.deleteDirectory(tempDir);
-        } catch(GitAPIException | IOException e) {
+        } catch(IOException e) {
             System.err.println("error: " + e);
         }
     }
@@ -49,7 +49,7 @@ public class CompilerTest {
 
 
             FileUtils.deleteDirectory(tempDir);
-        } catch(GitAPIException | IOException e) {
+        } catch(IOException e) {
             System.err.println("error: " + e);
         }
     }

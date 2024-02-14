@@ -36,7 +36,7 @@ public class MavenTestingTest {
             assertFalse(result);
 
             FileUtils.deleteDirectory(tempDir);
-        } catch(GitAPIException | IOException e) {
+        } catch(IOException e) {
             System.err.println("error: " + e);
         }
     }
