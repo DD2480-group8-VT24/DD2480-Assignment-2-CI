@@ -15,9 +15,9 @@ public class runUnitTests {
     
     /**
     * This function will return a boolean whether the test passes or not. It throws an excpetion when it cannot find the test name.
-    * @param: testcase name. If this field is an emptry string, the function will run all test cases.
-    * @return: boolean if the test failed or succeeded
-    * @author: Melissa Mazura
+    * @param testcase name. If this field is an emptry string, the function will run all test cases.
+    * @return boolean if the test failed or succeeded
+    * @author Melissa Mazura
     */
     public static boolean runTests(String testCase) {
         ProcessBuilder pb = new ProcessBuilder("mvn", testCase, "test");
@@ -46,8 +46,8 @@ public class runUnitTests {
     /**
     * This function will return a boolean whether the test passes or not. It throws an excpetion when it cannot find the test name.
     * This will run all test cases.
-    * @return: boolean if the test failed or succeeded
-    * @author: Melissa Mazura
+    * @return boolean if the test failed or succeeded
+    * @author Melissa Mazura
     */
     public static boolean runAllTests(File tempDir) {
         ProcessBuilder pb = new ProcessBuilder("mvn", "test");
@@ -76,9 +76,9 @@ public class runUnitTests {
 
     /**
     * This function will go through the results of the tests and return whether all tests passed.
-    * @param: file of the tests
-    * @return: boolean if we find BUILD SUCCESS in said file to ensure the test passed
-    * @author: Melissa Mazura
+    * @param resultsFile file of the tests
+    * @return boolean if we find BUILD SUCCESS in said file to ensure the test passed
+    * @author Melissa Mazura
     */
     public static boolean findSuccessBuild(File resultsFile) {
         try {
