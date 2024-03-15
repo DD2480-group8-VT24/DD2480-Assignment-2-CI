@@ -13,6 +13,9 @@ This is a simple CI server for the [Assignment #2: Continuous Integration](https
 - Run the program using intellij or VSCode or using the run command
 - on a seperate terminal run `ngrok http 8080`
 
+alalalallalal
+
+
 For more details on  setting up the server with webhooks look [here](https://github.com/KTH-DD2480/smallest-java-ci/blob/master/README.md)
 
 ## Documentation
